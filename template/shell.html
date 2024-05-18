@@ -1,0 +1,45 @@
+
+{% extends "index.html" %}
+{% block page %}
+
+<div class="stats shadow w-full">
+    <iframe src="http://localhost:4200/" id='window' class="w-full p-4" style="height:80vh; overflow-y:scroll">
+           
+    </iframe>
+    
+  <!-- <input id="cmdinput" type="text" placeholder="Type Command here. For example: ls" class="input w-full" /> -->
+
+</div>
+    
+  <script>
+
+      // setInterval(() => {
+         
+      //   fetchData("{% url 'resourceusage' %}", {} , (data) => {
+      //     data = JSON.parse(data);
+      //     document.getElementById('memoryusage').innerText = parseInt(data.memory);
+      //     document.getElementById('cpuusage').innerText = parseInt(data.cpu);
+      //   });
+
+      // }, 1000);
+      var input = "";
+      $(document).ready( function() {
+         
+          $("body").on('keypress', function(e) {
+              $("#window").append(String.fromCharCode(e.which));
+              input += String.fromCharCode(e.which);
+              if(e.which == 13) {
+                  input = input.slice(0, -1);
+                  $("#window").append("<br>");
+                  fetchData("{% url 'executeShellCMD' %}", {cmd: input} , (data) => {
+                      console.log(data);
+                      $("#window").append(data);
+                  });
+                  input = "";
+              }
+          });
+      });
+
+  </script>
+  {% endblock %}
+

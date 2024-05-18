@@ -1,0 +1,120 @@
+
+{% extends "index.html" %}
+{% block page %}
+
+<style>
+   td {
+     word-spacing: 1px;
+     padding: 1px;
+     min-width: 0px;
+   }
+   tr:hover{
+    background-color: #f1f1f1;
+   }
+   .nope:hover {
+    background-color: initial !important;
+   }
+</style>
+<div class="flex justify-between  ">
+
+  <h1>File Manager</h1> 
+<label class="input input-bordered flex items-center gap-2 " style="height:40px">
+  Location
+  <input type="text" class="grow" value="/" id="location" onchange="loadLocation()"/>
+</label>
+</div>
+
+<div class="stats shadow w-full">
+  
+   
+  
+    <div class="overflow-x-auto">
+      <table class="table">
+        <!-- head -->
+        <thead>
+          <tr class="nope">
+            <th></th>
+            <th>Permission</th>
+            <th>Disk B</th>
+            <th>User</th>
+            <th>Owner</th>
+            <th>Size</th>
+            <th>Mon</th>
+            <th>Day</th>
+            <th>Time</th>
+            <th>Names</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- row 1 -->
+          
+          <!-- row 2 -->
+         
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+    
+  <script>
+
+      // setInterval(() => {
+         
+      //   fetchData("{% url 'resourceusage' %}", {} , (data) => {
+      //     data = JSON.parse(data);
+      //     document.getElementById('memoryusage').innerText = parseInt(data.memory);
+      //     document.getElementById('cpuusage').innerText = parseInt(data.cpu);
+      //   });
+
+      // }, 1000);
+    var files = [];
+    function updateTable(){
+      document.querySelector('tbody').innerHTML = '';
+      for(var i=1; i<files.length; i++){
+        var splittedcontent = files[i].split(' ');
+        var text = ``;
+        var tr = document.createElement('tr');
+        document.querySelector('tbody').appendChild(tr);
+        tr.appendChild(document.createElement('td')).innerText = i;
+        tr.classList.add('files');
+        
+        for(var j=0; j<splittedcontent.length; j++){
+          if(splittedcontent[j] == "->"){
+            break;
+          }
+         
+          if(splittedcontent[j].length > 0){
+            tr.appendChild(document.createElement('td')).innerText = splittedcontent[j];
+          }
+        }
+        tr.id = splittedcontent[j-1];
+         tr.addEventListener('click', function(e){
+             openFolder(this.id);
+        });
+        
+        // console.log(file);
+      }
+    }
+    function loadLocation(){
+       fetchData("{% url 'filemanagerapi' %}", {location: document.querySelector('#location').value} , (data) => {
+          console.log(data);
+          $("#window").append(data);
+          files = JSON.parse(data);
+          updateTable();
+      });
+    }
+    
+   
+    setTimeout( loadLocation , 1000);
+
+
+    function openFolder(e) {
+        // alert(e);
+        // console.log(e);
+        document.querySelector('#location').value +="/"+ e;
+        loadLocation();
+    }
+  </script>
+  {% endblock %}
+
