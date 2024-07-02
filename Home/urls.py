@@ -30,9 +30,14 @@ urlpatterns = [
     path('scriptrunner', views.scriptrunner , name='scriptrunner'),
     path('shell', views.shell , name='shell'),
     path('executeShellCMD', views.executeShellCMD , name='executeShellCMD'),
-   path('commandhistory', views.commandhistory , name='commandhistory'),
+    path('commandhistory', views.commandhistory , name='commandhistory'),
+     path('commandhistoryapi', views.commandhistoryapi , name='commandhistoryapi'),
    path('filemanagerapi', views.filemanagerapi , name='filemanagerapi'),
-
+    path('taskmanagerapi', views.taskmanagerapi , name='taskmanagerapi'),
+      path('killprocess', views.killprocess , name='killprocess'),
+        path('codeeditor', views.codeeditor , name='codeeditor'),
+         path('deleteF', views.deleteF , name='deleteF'),
+         path('saveFile', views.saveFile , name='saveFile'),
    
     
 ]

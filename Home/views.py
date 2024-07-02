@@ -22,6 +22,30 @@ def scriptrunner(request):
     systeminfo = getStaticSystemInformation()
     print(type(systeminfo))
     return render(request, 'scriptrunner.html' , systeminfo)
+
+@login_required
+def codeeditor(request):
+    systeminfo = getStaticSystemInformation()
+    path = request.GET.get('path')
+    edit = request.GET.get('edit')
+    fullpath = path + "/" + edit
+    data = execCMD(["cat "+ fullpath ])
+    return render(request, 'codeeditor.html' , {"data":data , "path":fullpath})
+@login_required
+def deleteF(request):
+    systeminfo = getStaticSystemInformation()
+    print(type(systeminfo))
+    return render(request, 'codeeditor.html' , systeminfo)
+
+@login_required
+def saveFile(request):
+    data = request.POST.get('data')
+    path = request.POST.get('path')
+    # Open a file for writing ('w' mode creates a new file or truncates an existing file)
+    with open(path , 'w') as f:
+        f.write(data)  # Write a string to the file
+    return render(request, 'codeeditor.html' , {"data":"File Saved Successfully"})
+
 @login_required
 def settings(request):
     systeminfo = getStaticSystemInformation()
@@ -39,6 +63,12 @@ def filemanagerapi(request):
     print(location)
     files = execCMD(["ls -l "+ location ])
     return HttpResponse(json.dumps(files.splitlines()))
+
+@login_required
+def commandhistoryapi(request):
+    history = execCMD("cat ~/.bash_history")
+    print(history)
+    return HttpResponse(json.dumps(history.splitlines()))
 
 
 @login_required
@@ -62,6 +92,16 @@ def resourceusage(request):
     usage = getSystemUsage()
     print(usage)
     return HttpResponse(json.dumps(usage))
+@login_required
+def taskmanagerapi(request):
+    tasks = getTaskManager()
+    print(tasks)
+    return HttpResponse(json.dumps(tasks.splitlines()))
+@login_required
+def killprocess(request):
+    id = request.POST.get('id')
+    tasks = execCMD("kill "+id)
+    return HttpResponse(json.dumps(tasks))
 
 @login_required
 def executeShellCMD(request):
@@ -105,6 +145,5 @@ def reset(request):
         return redirect('home')
     return render(request, 'resetPassword.html')
 
-from cmdHelper.lib import execCMD
 def experiment(request):
     return HttpResponse(execCMD("sudo ls -l"))
