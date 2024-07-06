@@ -17,6 +17,7 @@ Including another URLconf
 from django.urls import path , include
 from . import views
 urlpatterns = [
+     path('', views.index, name='index'),
     path('home', views.home, name='home'),
     path('login', views.login, name='login'),
     path('reset', views.reset , name='reset'),
@@ -25,14 +26,13 @@ urlpatterns = [
     path('api', views.experiment , name='api'),
     path('resourceusage', views.resourceusage , name='resourceusage'),
     path('taskmanager', views.taskmanager , name='taskmanager'),
-    path('filemanager', views.filemanager , name='filemanager'),
+   
     path('settings', views.settings , name='settings'),
     path('scriptrunner', views.scriptrunner , name='scriptrunner'),
     path('shell', views.shell , name='shell'),
     path('executeShellCMD', views.executeShellCMD , name='executeShellCMD'),
     path('commandhistory', views.commandhistory , name='commandhistory'),
      path('commandhistoryapi', views.commandhistoryapi , name='commandhistoryapi'),
-   path('filemanagerapi', views.filemanagerapi , name='filemanagerapi'),
     path('taskmanagerapi', views.taskmanagerapi , name='taskmanagerapi'),
       path('killprocess', views.killprocess , name='killprocess'),
         path('codeeditor', views.codeeditor , name='codeeditor'),

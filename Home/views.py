@@ -5,6 +5,13 @@ from django.contrib.auth.decorators import login_required
 from cmdHelper.lib import *
 import json
 # Create your views here.
+
+
+def index(request):
+    if (request.user.is_authenticated):
+        return redirect('home')
+    return redirect('login')
+
 @login_required
 def home(request):
     # if not (request.user.is_authenticated):
@@ -51,18 +58,6 @@ def settings(request):
     systeminfo = getStaticSystemInformation()
     print(type(systeminfo))
     return render(request, 'settings.html' , systeminfo)
-@login_required
-def filemanager(request):
-    systeminfo = getStaticSystemInformation()
-    print(type(systeminfo))
-    return render(request, 'filemanager.html' , systeminfo)
-
-@login_required
-def filemanagerapi(request):
-    location = request.POST.get('location')
-    print(location)
-    files = execCMD(["ls -l "+ location ])
-    return HttpResponse(json.dumps(files.splitlines()))
 
 @login_required
 def commandhistoryapi(request):
