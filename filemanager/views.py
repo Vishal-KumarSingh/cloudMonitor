@@ -4,6 +4,7 @@ from django.contrib.auth import logout as log_out, login as log_in
 from django.contrib.auth.decorators import login_required
 from cmdHelper.lib import *
 import json
+from . import models
 # Create your views here.
 def index(request):
     if (request.user.is_authenticated):
@@ -12,9 +13,8 @@ def index(request):
 
 @login_required
 def filemanager(request):
-    systeminfo = getStaticSystemInformation()
-    print(type(systeminfo))
-    return render(request, 'filemanager.html' , systeminfo)
+    bookmarks = models.BookMarks.objects.all()
+    return render(request, 'filemanager.html' , {'bookmarks':bookmarks})
 
 @login_required
 def filemanagerapi(request):
@@ -22,3 +22,11 @@ def filemanagerapi(request):
     print(location)
     files = execCMD(["ls -l "+ location ])
     return HttpResponse(json.dumps(files.splitlines()))
+
+
+@login_required
+def createFolder(request):
+    foldername = request.POST.get('foldername')
+    output = execCMD("sudo mkdir '"+foldername+"'")
+    return HttpResponse(output)
+    

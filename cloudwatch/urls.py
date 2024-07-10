@@ -22,6 +22,6 @@ urlpatterns = [
     path('', include('Home.urls')),
     path('admin/', admin.site.urls),
     path('userManagement', include('userManagement.urls')),
-    path('filemanager', include('filemanager.urls')),
+    path('filemanager/', include('filemanager.urls')),
     path('cronjob', include('cronjob.urls')),
 ]

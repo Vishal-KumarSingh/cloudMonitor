@@ -32,6 +32,7 @@ urlpatterns = [
     path('shell', views.shell , name='shell'),
     path('executeShellCMD', views.executeShellCMD , name='executeShellCMD'),
     path('commandhistory', views.commandhistory , name='commandhistory'),
+    path('applicationstore', views.applicationstore , name='applicationstore'),
      path('commandhistoryapi', views.commandhistoryapi , name='commandhistoryapi'),
     path('taskmanagerapi', views.taskmanagerapi , name='taskmanagerapi'),
       path('killprocess', views.killprocess , name='killprocess'),

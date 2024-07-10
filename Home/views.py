@@ -4,6 +4,7 @@ from django.contrib.auth import logout as log_out, login as log_in
 from django.contrib.auth.decorators import login_required
 from cmdHelper.lib import *
 import json
+from . import models
 # Create your views here.
 
 
@@ -29,7 +30,10 @@ def scriptrunner(request):
     systeminfo = getStaticSystemInformation()
     print(type(systeminfo))
     return render(request, 'scriptrunner.html' , systeminfo)
-
+@login_required
+def applicationstore(request):
+    application = models.Application.objects.all()
+    return render(request, 'applicationstore.html' , {'application' : application})
 @login_required
 def codeeditor(request):
     systeminfo = getStaticSystemInformation()

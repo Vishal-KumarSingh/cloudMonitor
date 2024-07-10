@@ -20,6 +20,7 @@ urlpatterns = [
      path('', views.index, name='index'),
      path('filemanager', views.filemanager , name='filemanager'),
     path('filemanagerapi', views.filemanagerapi , name='filemanagerapi'),
+     path('createFolder', views.createFolder , name='createNewFolder'),
    
     
 ]

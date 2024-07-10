@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-i43@)o65#t7e%l+8d+r%kxsnvm02y$y&^v0rcgxq)2uzfrysy_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [ 'vksrajputt.me' , 'localhost' , '127.0.0.1' ]
+ALLOWED_HOSTS = [ 'vksrajputt.me' , 'localhost' , '127.0.0.1' , 'sqss.in' ]
 
 
 # Application definition
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'userManagement',
     'cmdHelper',
     'Home',
+    'filemanager'
 ]
 
 MIDDLEWARE = [

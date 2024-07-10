@@ -3,7 +3,7 @@
 {% block page %}
 
 <div class="stats shadow w-full">
-    <iframe src="http://vksrajputt.me:8159/" id='window' class="w-full p-4" style="height:80vh; overflow-y:scroll">
+    <iframe src="" id='window' class="w-full p-4" style="height:80vh; overflow-y:scroll">
     </iframe>
     
   <!-- <input id="cmdinput" type="text" placeholder="Type Command here. For example: ls" class="input w-full" /> -->
@@ -11,8 +11,11 @@
 </div>
     
   <script>
-
-      // setInterval(() => {
+       var shell = document.getElementById('window');
+       port = 4200;
+       shell.src =  'http://'+window.location.hostname + ":" + port;
+      
+             // setInterval(() => {
       //   fetchData("{% url 'resourceusage' %}", {} , (data) => {
       //     data = JSON.parse(data);
       //     document.getElementById('memoryusage').innerText = parseInt(data.memory);
