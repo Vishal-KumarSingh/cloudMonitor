@@ -4,6 +4,14 @@
   href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 
 <style>
+  button,
+[type='button'],
+[type='reset'],
+[type='submit'] {
+  -webkit-appearance: button; /* 1 */
+  background-color: blue;
+  background-image: none; /* 2 */
+}
   td {
     word-spacing: 1px;
     padding: 1px;
@@ -61,16 +69,14 @@
     <span class="material-symbols-outlined mx-1" onclick="createNewFile()">
       add
     </span>
-    <span class="material-symbols-outlined mx-1" onclick="refresh()">
+    <span class="material-symbols-outlined mx-1" onclick="loadLocation()">
       refresh
     </span>
-    <span class="material-symbols-outlined mx-1" onclick="star()">
-      star
-    </span>
+    
     <span class="material-symbols-outlined mx-1" onclick="bookmark()">
       bookmark_add
     </span>
-    <span class="material-symbols-outlined mx-1" onclick="bookmark()">
+    <span class="material-symbols-outlined mx-1" onclick="changePermission()">
       key
     </span>
   </div>
@@ -81,7 +87,7 @@
   </label>
 </div>
 
-<div class="flex justify-between  ">
+<div class="flex justify-start gap-1 m-1  ">
   {% for books in bookmarks %}
   <button class="bg-accent rounded-xl p-1 px-3" onclick="moveTo('{{books.path}}')">{{books.name}}</button>
   {% endfor %}
@@ -172,7 +178,7 @@
       });
       tr.appendChild(document.createElement('td')).innerHTML = `<div class="flex space-x-4">
     
-          <a target="_blank" href="./codeeditor?path=`+ document.querySelector('#location').value + `&edit=` + splittedcontent[j - 1] + `"><span class="material-symbols-outlined">edit</span></a>
+          <a target="_blank" href="../codeeditor?path=`+ document.querySelector('#location').value + `&edit=` + splittedcontent[j - 1] + `"><span class="material-symbols-outlined">edit</span></a>
           <span class="material-symbols-outlined" onclick="deleteF("`+ splittedcontent[j - 1] + `" , this)" style="color:red;">delete</span>
          
   </div>`;
@@ -287,5 +293,65 @@
 });
   }
 
+
+
+
+  function createNewFile(){
+    Swal.fire({
+  title: "Enter the Name of the File",
+  input: "text",
+  inputAttributes: {
+    autocapitalize: "off"
+  },
+  showCancelButton: true,
+  confirmButtonText: "Create",
+  showLoaderOnConfirm: true,
+  preConfirm: async (login) => {
+    var foldername = $('#location').val() + "/" + login;
+    fetchData("{% url 'createNewFile' %}", { "filename": foldername} , (login) => {
+         
+     });
+
+  },
+  allowOutsideClick: () => !Swal.isLoading()
+}).then((result) => {
+  if (result.isConfirmed) {
+    Swal.fire({
+      title: `File created !!`
+    });
+  }
+});
+  }
+
+
+
+
+  function bookmark(){
+    Swal.fire({
+  title: "Enter the Name of the BookMark",
+  input: "text",
+  inputAttributes: {
+    autocapitalize: "off"
+  },
+  showCancelButton: true,
+  confirmButtonText: "Create",
+  showLoaderOnConfirm: true,
+  preConfirm: async (login) => {
+    var foldername = $('#location').val();
+    fetchData("{% url 'createBookMark' %}", { "bookmarkName":login , "folder": foldername} , (login) => {
+         
+     });
+
+  },
+  allowOutsideClick: () => !Swal.isLoading()
+}).then((result) => {
+  if (result.isConfirmed) {
+    Swal.fire({
+      title: `BookMark created !!`
+    });
+    location.reload();
+  }
+});
+  }
 </script>
 {% endblock %}

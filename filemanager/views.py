@@ -30,3 +30,24 @@ def createFolder(request):
     output = execCMD("sudo mkdir '"+foldername+"'")
     return HttpResponse(output)
     
+    
+@login_required
+def createNewFile(request):
+    fielname = request.POST.get('filename')
+    file = open(fielname , "w")
+    file.close()
+    return HttpResponse("File created successfully ")
+  
+    
+@login_required
+def createBookMark(request):
+    bookmarkName = request.POST.get('bookmarkName')
+    folder = request.POST.get('folder')
+    bookmark = models.BookMarks()
+    bookmark.path = folder
+    bookmark.name = bookmarkName
+    # print(folder)
+    # print(bookmark.name)
+    bookmark.save()
+    return HttpResponse("BookMark created successfully ")
+      

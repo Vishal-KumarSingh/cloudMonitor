@@ -21,6 +21,8 @@ urlpatterns = [
      path('filemanager', views.filemanager , name='filemanager'),
     path('filemanagerapi', views.filemanagerapi , name='filemanagerapi'),
      path('createFolder', views.createFolder , name='createNewFolder'),
+    path('createNewFile', views.createNewFile , name='createNewFile'),
+     path('createBookMark', views.createBookMark , name='createBookMark'),
    
     
 ]
