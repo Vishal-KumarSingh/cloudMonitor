@@ -9,40 +9,41 @@
     <thead>
       <tr>
         <th>Name</th>
-        <th>Application Package</th>
-        <th>Installed Status</th>
+        <th>Status </th>
+        <th>Vendor Preset</th>
+        <th>Vendor Preset</th>
         <th>Action</th>
       </tr>
     </thead>
     <tbody>
       <!-- row 1 -->
-      {% for app in application %}
+      {% for app in services %}
       <tr>
        
         <td>
           <div class="flex items-center gap-3">
             <div class="avatar">
               <div class="mask mask-squircle h-6 w-6">
-                <img
-                  src="{{app.image}}"
-                  alt="Avatar Tailwind CSS Component" />
+              
               </div>
             </div>
             <div>
-              <div class="font-bold">{{app.name}}</div>
-              <div class="text-sm opacity-50">{{app.description}}</div>
+              <div class="font-bold">{{app.0}}</div>
+              <div class="text-sm opacity-50">{{app.4}} {{ app.5}} {{ app.6 }} {{ app.7}} {{ app.8}} {{ app.9}} {{ app.10}} {{ app.11}} {{ app.12}}</div>
             </div>
           </div>
         </td>
         <td>
-          {{app.softwarename}}
+          {{app.1}}
           <br />
         
         </td>
-        <td>{{app.status}}</td>
+        <td>{{app.2}}</td>
+        <td>{{app.3}}</td>
+    
         <th>
-          <button class="btn btn-accent btn-xs" onclick="install('{{app.installcmd}}')">
-            Install 
+          <button class="btn btn-accent btn-xs">
+            Enable
           </button>
         </th>
       </tr>
@@ -62,15 +63,6 @@
     </tfoot>
   </table>
 </div>
-<script>
 
-   function install(cmd){
-       console.log(cmd);
-       fetchData("{% url 'executeCMD' %}", { "cmd" : cmd} , (response) => {
-            
-            
-        });
-    }
-</script>
   {% endblock %}
 

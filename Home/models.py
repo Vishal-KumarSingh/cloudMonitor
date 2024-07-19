@@ -9,3 +9,7 @@ class Application(models.Model):
     image = models.CharField(max_length=255)
     installcmd = models.CharField(max_length=255 , default='')
     
+class Sripts(models.Model):
+    name = models.CharField(max_length=255)
+    description = models.CharField(max_length=255)
+    script = models.TextField()

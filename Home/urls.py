@@ -39,6 +39,7 @@ urlpatterns = [
         path('codeeditor', views.codeeditor , name='codeeditor'),
          path('deleteF', views.deleteF , name='deleteF'),
          path('saveFile', views.saveFile , name='saveFile'),
+          path('executeCMD', views.executeCommand , name='executeCMD'),
    
     
 ]

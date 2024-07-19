@@ -41,17 +41,48 @@
   }
   span:hover {
     cursor: pointer;
-    background-color: blue;
-    color: whitesmoke;
+    background-color: #ddd;
   }
   span {
     border-radius: 50%;
-    padding: 4px;
+    padding: 3px;
     background-color: whitesmoke;
   }
 </style>
-<h1>File Manager</h1>
-<div class="flex justify-between  ">
+<div class="flex">
+  
+    <h3 class="p-1">Git:- </h3>
+    <div>
+     
+      <span class="material-symbols-outlined mx-1" onclick="goBack()">
+        commit
+      </span>
+      <span class="material-symbols-outlined mx-1" onclick="goForward()">
+        north_east
+      </span>
+      <span class="material-symbols-outlined  mx-1" onclick="goHome()">
+        call_received
+      </span>
+      <span class="material-symbols-outlined  mx-1" onclick="createNewFolder()">
+        create_new_folder
+      </span>
+      <span class="material-symbols-outlined mx-1" onclick="createNewFile()">
+        add
+      </span>
+      <span class="material-symbols-outlined mx-1" onclick="loadLocation()">
+        refresh
+      </span>
+      
+      <span class="material-symbols-outlined mx-1" onclick="bookmark()">
+        bookmark_add
+      </span>
+      <span class="material-symbols-outlined mx-1" onclick="changePermission()">
+        key
+      </span>
+    </div>
+    
+</div>
+<div class="flex justify-between  w-full">
 
   <div>
     <span class="material-symbols-outlined mx-1" onclick="goBack()">

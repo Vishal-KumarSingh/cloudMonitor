@@ -17,22 +17,35 @@ def index(request):
 def home(request):
     # if not (request.user.is_authenticated):
     #     return redirect('login')
-    return render(request, 'index.html')
+    return render(request, 'welcome.html')
 
 
 @login_required
 def dashboard(request):
     systeminfo = getStaticSystemInformation()
     print(type(systeminfo))
-    return render(request, 'dashboard.html' , systeminfo)
+    return render(request, 'welcome.html' , systeminfo)
+
 @login_required
 def scriptrunner(request):
-    systeminfo = getStaticSystemInformation()
-    print(type(systeminfo))
-    return render(request, 'scriptrunner.html' , systeminfo)
+    scripts = models.Sripts.objects.all()
+    return render(request, 'scriptrunner.html' , {'scripts' : scripts})
+
+@login_required
+def executeCommand(request):
+    cmd = request.POST.get('cmd')
+    output = execCMD(cmd)
+    return HttpResponse(output)
+
 @login_required
 def applicationstore(request):
     application = models.Application.objects.all()
+    for app in application:
+        output = execCMD("which "+app.softwarename)
+        if output == "":
+            app.status = "Not Installed"
+        else:
+            app.status = "Installed"
     return render(request, 'applicationstore.html' , {'application' : application})
 @login_required
 def codeeditor(request):

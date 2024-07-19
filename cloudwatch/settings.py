@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'userManagement',
     'cmdHelper',
     'Home',
-    'filemanager'
+    'filemanager',
+    "Services"
 ]
 
 MIDDLEWARE = [

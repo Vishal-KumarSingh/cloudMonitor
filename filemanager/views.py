@@ -34,7 +34,7 @@ def createFolder(request):
 @login_required
 def createNewFile(request):
     fielname = request.POST.get('filename')
-    file = open(fielname , "w")
+    file = open(fielname , "w") 
     file.close()
     return HttpResponse("File created successfully ")
   
