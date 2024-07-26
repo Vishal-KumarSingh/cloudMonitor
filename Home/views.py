@@ -24,7 +24,7 @@ def home(request):
 def dashboard(request):
     systeminfo = getStaticSystemInformation()
     print(type(systeminfo))
-    return render(request, 'welcome.html' , systeminfo)
+    return render(request, 'dashboard.html' , systeminfo)
 
 @login_required
 def scriptrunner(request):

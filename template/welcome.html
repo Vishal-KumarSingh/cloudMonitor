@@ -13,7 +13,7 @@
   <div class="flex w-full justify-between grow " >
            
 
-<a href="#" class="m-1 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+<a href="{% url 'resourceusage' %}" class="m-1 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
   <span class="w-full text-center material-symbols-outlined">
     data_usage
     </span>
@@ -22,21 +22,16 @@
 
   
 
-<a href="#" class="m-1 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+<a href="{% url 'shell' %}" class="m-1 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
   <span class="w-full text-center material-symbols-outlined">
     terminal
     </span>
   <h5 class="mb-1 text-center text-lg font-bold tracking-tight text-gray-900 dark:text-white">Shell</h5>
   </a>
   
-  <a href="#" class="m-1 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-    <span class="w-full text-center material-symbols-outlined">
-      group
-      </span>
-    <h5 class="mb-1 text-center text-lg font-bold tracking-tight text-gray-900 dark:text-white">Users</h5>
-    </a>
   
-    <a href="#" class="m-1 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+  
+    <a href="{% url 'filemanager' %}" class="m-1 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
       <span class="w-full text-center material-symbols-outlined">
         folder_open
         </span>
@@ -44,7 +39,7 @@
       </a>
   
 
-    <a href="#" class="m-1 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+    <a href="{% url 'taskmanager' %}" class="m-1 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
       <span class="w-full text-center material-symbols-outlined">
         task
         </span>
@@ -53,7 +48,7 @@
 
 
 
-    <a href="#" class="m-1 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+    <a href="{% url 'services' %}" class="m-1 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
       <span class="w-full text-center material-symbols-outlined">
         linked_services
         </span>
@@ -62,24 +57,11 @@
       </a>
 
 
-    <a href="#" class="m-1 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-      <span class="w-full text-center material-symbols-outlined">
-        settings  
-        </span>
-      <h5 class="mb-1 text-center text-lg font-bold tracking-tight text-gray-900 dark:text-white">Setting</h5>
-       </a>
-     
+    
       
-    <a href="#" class="m-1 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-      <span class="w-full text-center material-symbols-outlined">
-        extension  
-        </span>
-      <h5 class="mb-1 text-center text-lg font-bold tracking-tight text-gray-900 dark:text-white">Extension</h5>
-       </a>
-       
-       
+   
 
-    <a href="#" class="m-1 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+    <a href="{% url 'applicationstore' %}" class="m-1 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
       <span class="w-full text-center material-symbols-outlined">
         shopping_bag  
         </span>
@@ -88,7 +70,7 @@
 
 
 
-    <a href="#" class="m-1 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+    <a href="{% url 'commandhistory' %}" class="m-1 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
       <span class="w-full text-center material-symbols-outlined">
         history  
         </span>

@@ -42,9 +42,16 @@
         <td>{{app.3}}</td>
     
         <th>
-          <button class="btn btn-accent btn-xs">
-            Enable
+          {% if app.3 != 'running' %}
+          <button class="btn btn-accent btn-xs" onclick="startService('sudo systemctl start {{app.0}}')">
+            Start
           </button>
+          {% endif %}
+          {% if app.3 == 'running' %}
+          <button class="btn btn-danger btn-xs" onclick="stopService('sudo systemctl stop {{app.0}}')">
+            Stop
+          </button>
+          {% endif %}
         </th>
       </tr>
       {% endfor %}
@@ -63,6 +70,28 @@
     </tfoot>
   </table>
 </div>
+
+
+<script>
+
+  function startService(cmd){
+      console.log(cmd);
+      fetchData("{% url 'executeCMD' %}", { "cmd" : cmd} , (response) => {
+           Swal.fire("Service Started ")
+           
+       });
+   }
+
+
+  function stopService(cmd){
+      console.log(cmd);
+      fetchData("{% url 'executeCMD' %}", { "cmd" : cmd} , (response) => {
+           Swal.fire("Service Removed  ")
+           
+       });
+   }
+   
+</script>
 
   {% endblock %}
 

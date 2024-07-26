@@ -40,11 +40,19 @@
         
         </td>
         <td>{{app.status}}</td>
-        <th>
+        <td>
+          {% if app.status == 'Not Installed' %}
           <button class="btn btn-accent btn-xs" onclick="install('{{app.installcmd}}')">
             Install 
           </button>
-        </th>
+          {% endif %}
+          {% if app.status == 'Installed' %}
+          <button class="btn btn-accent btn-xs" onclick="uninstall('sudo apt-get remove --purge {{app.softwarename}}* -y ')">
+            Remove 
+          </button>
+          {% endif %}
+         
+        </td>
       </tr>
       {% endfor %}
       <!-- row 2 -->
@@ -67,10 +75,20 @@
    function install(cmd){
        console.log(cmd);
        fetchData("{% url 'executeCMD' %}", { "cmd" : cmd} , (response) => {
-            
+            Swal.fire("Application Installed ")
             
         });
     }
+
+
+   function uninstall(cmd){
+       console.log(cmd);
+       fetchData("{% url 'executeCMD' %}", { "cmd" : cmd} , (response) => {
+            Swal.fire("Application Removed  ")
+            
+        });
+    }
+    
 </script>
   {% endblock %}
 
