@@ -13,14 +13,19 @@ def index(request):
 
 @login_required
 def filemanager(request):
-    bookmarks = models.BookMarks.objects.all()
+    bookmarks = models.BookMarks.objects.all() #bookmarks db haii
+    //database se access krne ke liye model  likhna prte hai 
     return render(request, 'filemanager.html' , {'bookmarks':bookmarks})
+    # request ,html file name,r knsa data dena haii
+    #yeah bookmark  list of object hai 
 
 @login_required
 def filemanagerapi(request):
     location = request.POST.get('location')
+    #ui se location le rhe haii
     print(location)
     files = execCMD(["ls -l "+ location ])
+    #ls-l gives whole file list 
     return HttpResponse(json.dumps(files.splitlines()))
 
 
@@ -28,6 +33,7 @@ def filemanagerapi(request):
 def createFolder(request):
     foldername = request.POST.get('foldername')
     output = execCMD("sudo mkdir '"+foldername+"'")
+    #mkdir se naya folder bna do
     return HttpResponse(output)
     
     
